@@ -3,4 +3,4 @@ application = Flask(__name__)
 
 @application.route('/')
 def hello_world():
-    return 'Sup. Subscribe'
+    return 'This will be a volleyboard dashball. Or something like that'
