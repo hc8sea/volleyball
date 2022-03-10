@@ -19,7 +19,7 @@ def main():
                     """, con = credentials)
         df
 
-        a = 'This will be a volleyboard dashball. Or something like that ok'
+        a = 'This will be a volleyboard dashball. Or something like that okay'
 
 if __name__ == '__main__':
     main()
