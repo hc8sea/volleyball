@@ -12,14 +12,14 @@ import requests
 def main():
 
         st.text('projeto em andamento. estou atualizando direto no main. não repare a bagunça')
-        credentials = 'mysql+pymysql://hc8sea:portfoliopassword@volleyball.cf69hpkhvjyq.us-east-1.rds.amazonaws.com/volleyball'
+        #credentials = 'mysql+pymysql://hc8sea:portfoliopassword@volleyball.cf69hpkhvjyq.us-east-1.rds.amazonaws.com/volleyball'
 
-        df = pd.read_sql("""
+        #df = pd.read_sql("""
                     SELECT * from volleyball.out
                     """, con = credentials)
-        df
+        #df
 
-        a = 'This will be a volleyboard dashball. Or something like that okay'
+        #a = 'This will be a volleyboard dashball. Or something like that okay'
 
 if __name__ == '__main__':
     main()
