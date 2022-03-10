@@ -54,24 +54,15 @@ def main():
 
     #print("Count:", result)
 
+    hide_streamlit_style = """
+                <style>
+                #MainMenu {visibility: hidden;}
+                footer {visibility: hidden;}
+                </style>
+                """
+    st.markdown(hide_streamlit_style, unsafe_allow_html=True)
+
+
 
 if __name__ == '__main__':
     main()
-
-hide_streamlit_style = """
-            <style>
-            #MainMenu {visibility: hidden;}
-            footer {visibility: hidden;}
-            </style>
-            """
-st.markdown(hide_streamlit_style, unsafe_allow_html=True)
-
-
-#@application.route('/')
-#def index():
-#    return html
-
-
-
-    #results = db.session.query(out).all()
-    #print(type(results))
