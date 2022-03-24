@@ -1,7 +1,3 @@
-#Este código objetiva aplicar conhecimentos superliga.cbv.com.br/tabela-de-jogos-feminino
-
-
-
 import math
 import requests
 import pymysql
@@ -21,8 +17,30 @@ from sklearn.neighbors import KNeighborsClassifier
 from sklearn import metrics
 from streamlit import caching
 
+st.set_page_config(
+        page_title="Superliga Feminina de Vôlei",
+)
+
 
 def main():
+
+    st.header('Superliga Feminina de Vôlei')
+
+    st.write(
+    """
+    Este Dashboard objetiva demonstrar a implementação de:
+
+        1) Webscraping usando Selenium e BeautifulSoup (ver arquivo data_collection.py)
+        2) Solicitações em SQL com database armazenada no AWS RDS
+        4) Treinamento de modelo K-Nearest Neighbors
+        5) Previsão via ML utilizando dados inseridos pelo usuário
+        6) Geolocalização usando GeoPy e PyDeck
+        7) Plot do tipo Stacked Areas via Plotly
+        8) Deployment de webapp utilizando Streamlit
+
+         """)
+
+    st.write('Mais em: https://github.com/hc8sea/volleyball')
 
     #Credenciais para acesso da tabela armazenada no AWS RDS
 
@@ -287,6 +305,12 @@ def main():
                     """, con = credentials)
 
         latlon.replace('Ã§','ç', regex=True, inplace=True) #Corrigindo um problema com o cedilha
+
+ #Removendo pontos do mapa onde a localização não foi obtida
+        latlon.drop(3,inplace=True)
+        latlon.drop(4,inplace=True)
+        latlon.drop(8,inplace=True)
+        #latlon.drop(22,inplace=True)
 
         #Formatação do DataFrame nos moldes exigidos pelo pydeck_chart
 
