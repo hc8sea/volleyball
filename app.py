@@ -1,4 +1,4 @@
-import math
+﻿import math
 import requests
 import pymysql
 import time
@@ -18,39 +18,38 @@ from sklearn import metrics
 from streamlit import caching
 
 st.set_page_config(
-        page_title="Superliga Feminina de Vôlei",
-)
+        page_title="Superliga Feminine Volleyball Championship")
 
 
 def main():
 
-    st.header('Superliga Feminina de Vôlei')
+    st.header('Superliga Feminine Volleyball Championship')
 
     st.write(
     """
-    Este Dashboard objetiva demonstrar a implementação de:
+    This dashboard intends to display:
 
-        1) Webscraping usando Selenium e BeautifulSoup (ver arquivo data_collection.py)
-        2) Solicitações em SQL com database armazenada no AWS RDS
-        4) Treinamento de modelo K-Nearest Neighbors
-        5) Previsão via ML utilizando dados inseridos pelo usuário
-        6) Geolocalização usando GeoPy e PyDeck
-        7) Plot do tipo Stacked Areas via Plotly
-        8) Deployment de webapp utilizando Streamlit
+        1) Webscraping using Selenium and BeautifulSoup (see WebScraping.py)
+        2) SQL Queries with databased hosted on AWS RDS
+        4) K-Nearest Neighbors model training
+        5) ML Prediction with input data
+        6) Geolocation using GeoPy and PyDeck
+        7) Stacked Areas Plot via Plotly
+        8) WebApp deployment using Streamlit
 
          """)
 
-    st.write('Mais em: https://github.com/hc8sea/volleyball')
+    st.write('repository link: https://github.com/hc8sea/volleyball')
 
-    #Credenciais para acesso da tabela armazenada no AWS RDS
+    #AWS RDS credentials:
 
     credentials = 'mysql+pymysql://hc8sea:portfoliopassword@volleyball.cf69hpkhvjyq.us-east-1.rds.amazonaws.com/volleyball'
 
-    page1 = 'Previsão de Resultados Superliga'
-    page2 = 'Estatísticas Itambé Minas'
-    page3 = 'Mapa de jogos Itambé Minas'
+    page1 = 'Results prediction'
+    page2 = 'Itambé Minas Team Stats'
+    page3 = 'Itambé Minas Team on the Map'
 
-    page = st.selectbox('Selecione uma opção', (page1, page2, page3))
+    page = st.selectbox('Select an option', (page1, page2, page3))
 
     st.write('')
     st.write('')
@@ -58,9 +57,8 @@ def main():
 
     if page == page1:
 
-        #Solicitando a tabela de estatísticas, gerada no arquivo WebScraping.py via BeautifulSoup e Selenium
-        #Cada linha do DataFrame df corresponde a uma partida e um recorte das pontuações envolvidas
-
+        #Querying the data table created on WebScraping.py via BeautifulSoup and Selenium
+        #Each line in the df DataFrame corresponds to a match and most relevant parameter according to the official statistics found on the 'Superliga' website.
         df = pd.read_sql(
                             """
                             SELECT * from volleyball.allchamp
@@ -68,13 +66,13 @@ def main():
 
                             con = credentials)
 
-        #Organizando os parâmetros utilizados para gerar uma outra tabela:
+        #Rearranging the parameters to create another table:
 
         times = np.unique(np.concatenate((df['home'].values, df['guest'].values)))
         hcriterios = ['homesets', 'homepts', 'homeace', 'homeblock']
         gcriterios = ['guestsets', 'guestpts', 'guestace', 'guestblock']
 
-        #Gerando uma array genérica para popular um novo DataFrame dfmeans com o mesmo esqueleto de df
+        #Creating a generic array to populate a new DataFrame with the same skeleton as df
 
         arr = np.ndarray(shape=df.shape)
         dfmeans = pd.DataFrame(arr, columns = [ 'id',
@@ -82,10 +80,10 @@ def main():
                                                 'guestsets','guestpts','guestace','guestblock',
                                                 'home','guest','vincitore'])
 
-        #Em dfmeans, cada linha corresponde a uma partida e aos valóres médios de cada parâmetro até então.
-        #O objetivo é atrelar o resultado de cada partida com a média histórica, para criar um modelo de ML.
+        #In dfmeans, each line corresponds to a match and the mean values of each parameters until the day before the match.
+	#The goeal here is to create a link between the result's match and the combination of the relevant parameters mean values so we can create a ML model
 
-        #Populando as estatísticas dos times anfitriões:
+        #Populating the home team stats:
 
         for time in times:
           for hcriterio in hcriterios:
@@ -98,7 +96,7 @@ def main():
                 value = df[df['home'] == time].sort_values(by='id')[hcriterio].values[:-i].mean()
                 dfmeans.iat[index,column] = value
 
-        #Populando as estatísticas dos times convidados:
+        #Populating the guest team stats:
 
         for time in times:
           for gcriterio in gcriterios:
@@ -112,13 +110,12 @@ def main():
                 dfmeans.iat[index,column] = value
 
 
-        dfmeans['id'] = df['id']                 #Algumas colunas serão idênticas às de df.
+        dfmeans['id'] = df['id']                 #Some columns will be just the sabe as df's.
         dfmeans['home'] = df['home']
         dfmeans['guest'] = df['guest']
         dfmeans['vincitore'] = df['vincitore']
-        dfmeans.set_index('id',inplace=True)     #Coloca o ID de cada partida como índice
-        dfmeans.dropna(inplace=True)             #Remove valores nulos
-
+        dfmeans.set_index('id',inplace=True)     #Setting the match ID as index
+        dfmeans.dropna(inplace=True)             #Remove null values (the first match of each team will be useless in our analysys)
         #Separando features de labels:
 
         Y_ = dfmeans['vincitore']
@@ -134,27 +131,27 @@ def main():
         scaler = scaler_X.fit(X_dummies.to_numpy())
         X_dummies_scaled = scaler.transform(X_dummies.to_numpy())
 
-        #Renomeando e padronizando as arrays de features e labels.
+        #Renaming and normalizing the features and labels.
 
         y = Y_.to_numpy(dtype='float64')
         X = X_dummies_scaled
 
-        #Fazendo o treinamento do modelo de ML. A escolha foi pelo algoritmo KNN.
+        #Training the ML model - the algorhytmn chosen is K-Nearest Neighbors, for this is a first commit and KNN tends to be a good first guess.
 
         X_train, X_test, y_train, y_test = train_test_split( X, y, test_size=0.2, random_state=8)
         k = 7
         neigh = KNeighborsClassifier(n_neighbors = k).fit(X_train,y_train)
 
-        #Neste ponto, o usuário escolhe quais times deseja comparar
+        #At this point the user select two teams for the model to perform the prediction
 
 
-        st.header('Escolha dois times')
+        st.header('Choose two volleyball teams and find out which one would win in a match taking place today')
 
-        player_home = st.selectbox('Escolha o time anfitrião',times)
-        player_guest = st.selectbox('Escolha o time visitante',times)
+        player_home = st.selectbox('Choose the home team',times)
+        player_guest = st.selectbox('Choose the guest team',times)
 
-        #Como a previsão depende da combinação da média histórica de cada time, estes dados precisam ser gerados
-        #A função get_pred faz parte deste serviço
+        #The feature values of the new datapoint needs to be generated
+        #get_pred function does the job
 
         def get_pred(player_home,player_guest):
 
@@ -175,28 +172,28 @@ def main():
 
           return df_pred
 
-        #Chamando df_pred para os times escolhidos
+        #Calling df_pred for the chosen teams
 
         pred = get_pred(player_home, player_guest)
 
-        #Encontrando a respectiva coluna gerada pelo get_dummies
+        #Finding the respective column generated by get_dummies
 
         column_home = f'home_{player_home}'
         column_guest = f'guest_{player_guest}'
 
-        #Fazendo o Encoding em concordância com o treinamento.
+        #Encoding the data
 
         X_pred = pd.DataFrame(pred, columns = X_dummies.columns)
         X_pred[column_home]=1
         X_pred[column_guest]=1
         X_pred.fillna(0,inplace=True)
 
-        #Normalizando os novos dados usando o mesmo "molde" da etapa de treinamento.
+        #Scaling the new data in the same fashion as done in the training stage.
 
         new_data = X_pred.to_numpy()
         new_data_scaled = scaler.transform(new_data)
 
-        #Obtendo a previsão de vitória
+        #Finally, the prediction:
         if st.button('Faça a previsão'):
             if player_home == player_guest:
                 st.write('Escolha dois times diferentes')
@@ -211,11 +208,11 @@ def main():
 
     if page == page2:
 
-        #Nesta página, comparamos as contribuições de 3 jogadoras ao longo das partidas em termos de três critérios
+        #In this page, we will compare the contributions of 3 players across the championship in terms of 3 criteria:
 
-        criterio = st.selectbox('Selecione um critério', ('Maior Pontuadora', 'Melhor Sacadora', 'Melhor Bloqueadora'))
+        criterio = st.selectbox('Select a criteria', ('Best Attacker', 'Best Server', 'Best Blocker'))
 
-        #A função get_xy obtém as informações necessárias de uma jogadora específica.
+        #The get_xy function obtains the needed information from a specific player.
 
         def get_xy(player,criteria):
                 df = pd.read_sql(f"""
@@ -235,8 +232,7 @@ def main():
                 df['DATE']=df.apply(lambda x: (x['DATE'].split()[1] + ' '+ x['DATE'].split()[3][:3] + ' ' + x['DATE'].split()[5][-2:]),axis=1)
                 return df['DATE'], df['PPS']
 
-        #A função gofigure cria o gráfico de Stacked Areas
-        #A comparação se dá entre 3 jogadoras mediante o criterio selecionado ao longo do campeonato.
+        #The function gofigure create the Staked Areas plot, comparing 3 hand-picked players according to each criteria
 
         def gofigure(player1,player2,player3,criteria,recorte):
                 fig = go.Figure()
@@ -273,27 +269,27 @@ def main():
 
                 return st.plotly_chart(fig)
 
-        #A seguir, os gráficos são gerados conforme a escolha do usuário.
+        #Now the graphs are generated according to the user's choice.
 
 
-        if st.button('Construa o gráfico'):
+        if st.button('Build the graph'):
 
-            if criterio == 'Maior Pontuadora':
+            if criterio == 'Best Attacker':
 
-                gofigure('THAISA DAHER','NERIMAN OZSOY','DANIELLE CUTTINO','PONTOS_TOT', 15) #O último parâmetro dá o limite superior do gráfico.
+                gofigure('THAISA DAHER','NERIMAN OZSOY','DANIELLE CUTTINO','PONTOS_TOT', 15) #The last parameter sets the superior limit of the graph
 
-            elif criterio == 'Melhor Sacadora':
+            elif criterio == 'Best Server':
 
                 gofigure('THAISA DAHER','JULIA KUDIESS','PRISCILA DAROIT','SERVICO_ACE', 2)
 
-            elif criterio == 'Melhor Bloqueadora':
+            elif criterio == 'Best Blocker':
 
                 gofigure('THAISA DAHER','JULIA KUDIESS','CAROL GATTAZ','BLOQUEIO_PTS', 4)
 
     if page == page3:
 
-        #Nesta seção, todos os jogos do time Itambé Minas são mostrados via Geolocalização
-        #É possível navegar o mapa e diferenciar jogos vitoriosos e não-vitoriosos.
+        #In this section, all Itambé Minas games are shown via geolocation
+        #It is possible to navigate the map and see details of each match
 
         latlon = pd.read_sql("""
                     SELECT DISTINCT B.ID, A.LAT, A.LON, A.VICTOR,
@@ -304,15 +300,15 @@ def main():
 
                     """, con = credentials)
 
-        latlon.replace('Ã§','ç', regex=True, inplace=True) #Corrigindo um problema com o cedilha
+        latlon.replace('Ã§','ç', regex=True, inplace=True) #Correcting an issue with the ç character (dates in portuguese)
 
- #Removendo pontos do mapa onde a localização não foi obtida
+ 	#Removing datapoints with failed geolocation
         latlon.drop(3,inplace=True)
         latlon.drop(4,inplace=True)
         latlon.drop(8,inplace=True)
         #latlon.drop(22,inplace=True)
 
-        #Formatação do DataFrame nos moldes exigidos pelo pydeck_chart
+        #Structuring the dataframe according to pydeck_chart's requirements
 
         latlon['LON'] = latlon.apply(lambda x: x['LON'] + np.random.rand()/4000, axis=1)
         latlon['LAT'] = latlon.apply(lambda x: x['LAT'] + np.random.rand()/4000, axis=1)
@@ -321,7 +317,7 @@ def main():
         latlon['SPACES'] = latlon.apply(lambda x: 1, axis=1)
         latlon['tags'] = latlon.apply(lambda x: x['HOME']+' '+str(x['HOMEPTS'])+' x '+str(x['GUESTPTS'])+' '+x['GUEST']+'\n'+x['DATE'],axis=1)
 
-        #Escolha, formatação e condicionamento dos ícones de vitória e derrota
+        #Won/Lost Icon definition, conditioning and formatting
 
         ICON_URL = 'https://img.icons8.com/color-glass/452/trophy.png'
         ICON_URL_LOST = "https://img.icons8.com/emoji/452/broken-heart.png"
@@ -359,11 +355,11 @@ def main():
         view_state = pdk.ViewState(latitude=-22, longitude=-47, zoom=4.5, bearing=0, pitch=0)
         s = pdk.Deck(layers=[icon_layer], initial_view_state=view_state, tooltip={"text": "{tags}"})
 
-        #Exibição do mapa
+        #Map exibition
 
         st.pydeck_chart(s)
 
-        #Fim do código
+        #End of code
 
 hide_streamlit_style = """
             <style>
