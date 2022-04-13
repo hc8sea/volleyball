@@ -24,8 +24,12 @@ Outputs a winner given a Guest Team and a Home Team selected by the user. The Mo
 
 | Date          |    Home Team      |   Guest Team    | Predicted Winner   | Actual Winner |
 |---------------|-------------------|-----------------|--------------------|---------------|
-|18/03|![Image](https://superliga.cbv.com.br/assets/images/equipes/134.png)|![Image](https://superliga.cbv.com.br/assets/images/equipes/131.png)|![Image](https://superliga.cbv.com.br/assets/images/equipes/131.png)|![Image](https://superliga.cbv.com.br/assets/images/equipes/131.png)|
-
+|18/03|![Image](https://superliga.cbv.com.br/assets/images/equipes/134.png)|![Image](https://superliga.cbv.com.br/assets/images/equipes/131.png)|Guest|Guest|
+|18/03|![Image](https://superliga.cbv.com.br/assets/images/equipes/141.png)|![Image](https://superliga.cbv.com.br/assets/images/equipes/156.png)|Guest|Guest|
+|18/03|![Image](https://superliga.cbv.com.br/assets/images/equipes/142.png)|![Image](https://superliga.cbv.com.br/assets/images/equipes/154.png)|Guest|Guest|
+|18/03|![Image](https://superliga.cbv.com.br/assets/images/equipes/139.png)|![Image](https://superliga.cbv.com.br/assets/images/equipes/133.png)|Guest|Guest|
+|18/03|![Image](https://superliga.cbv.com.br/assets/images/equipes/153.png)|![Image](https://superliga.cbv.com.br/assets/images/equipes/132.png)|Guest|Guest|
+|18/03|![Image](https://superliga.cbv.com.br/assets/images/equipes/155.png)|![Image](https://superliga.cbv.com.br/assets/images/equipes/138.png)|Guest|Guest|
 
 
 ## Instalation
