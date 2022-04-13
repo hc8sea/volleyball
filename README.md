@@ -24,7 +24,7 @@ Outputs a winner given a Guest Team and a Home Team selected by the user. The Mo
 
 | Date          |    Home Team      |   Guest Team    | Predicted Winner   | Actual Winner |
 |---------------|-------------------|-----------------|--------------------|---------------|
-||ESPORTE CLUBE PINHEIROS|SESC RJ FLAMENGO|SESC RJ FLAMENGO|SESC RJ FLAMENGO|
+|18/03|![Image](https://superliga.cbv.com.br/assets/images/equipes/134.png)|![Image](https://superliga.cbv.com.br/assets/images/equipes/131.png)|![Image](https://superliga.cbv.com.br/assets/images/equipes/131.png)|![Image](https://superliga.cbv.com.br/assets/images/equipes/131.png)|
 
 
 
