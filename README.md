@@ -34,7 +34,7 @@ Outputs a winner given a Guest Team and a Home Team selected by the user. The Mo
 
 Here you can build a Stacked Areas Plot comparing the top 3 performers within the scope of a desired criteria
 
-<img src="part1.png" alt="drawing" width="160"/>
+<img src="part2.png" alt="drawing" width="160"/>
 
 ### Page Three: Team on the Map 
 
