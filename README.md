@@ -1,6 +1,6 @@
 # VolleyBall Predictor
 
-![Python](https://img.shields.io/badge/python-v3.7.4150.1013-blue.svg)
+![Python](https://img.shields.io/badge/python-v3.7+-blue.svg)
 
 If you're seeing this, you're probably a recruiter. Nice to meet you!
 This project intends to display the following skills:
@@ -17,10 +17,6 @@ Web: Visit https://shrouded-beach-73431.herokuapp.com
 
 ## Instalation
 ---
-Python 3.7.4150.1013
-
-packages:
-
 
 `pip install streamlit`
 
