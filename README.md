@@ -14,7 +14,6 @@ This project intends to display the following Data Science skills :
 * Deployment: Streamlit
 
 ## Overview
----
 
 The Superliga VolleyBall Analysis is a three page dashboard exploring the available [stats](https://superliga.cbv.com.br/tabela-de-jogos-feminino) on the 'Superliga' Brazilian Volleyball Championship. Feel free to explore it: https://shrouded-beach-73431.herokuapp.com
 
@@ -32,7 +31,7 @@ Outputs a winner given a Guest Team and a Home Team selected by the user. The Mo
 |18/03|<img src="https://superliga.cbv.com.br/assets/images/equipes/155.png" alt="drawing" width="160"/>|<img src="https://superliga.cbv.com.br/assets/images/equipes/138.png" alt="drawing" width="160"/>|Guest|Guest|
 
 ## Instalation
----
+
 
 Please proceed to install Streamlit
 
@@ -43,6 +42,6 @@ And then, on your local folder, run the following
 `streamlit run app.py`
 
 ## Table of Contents
----
+
 ## Table of Contents
----
+
