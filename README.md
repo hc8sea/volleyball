@@ -30,7 +30,13 @@ Outputs a winner given a Guest Team and a Home Team selected by the user. The Mo
 |18/03|<img src="https://superliga.cbv.com.br/assets/images/equipes/153.png" alt="drawing" width="160"/>|<img src="https://superliga.cbv.com.br/assets/images/equipes/132.png" alt="drawing" width="160"/>|Guest|Guest|
 |18/03|<img src="https://superliga.cbv.com.br/assets/images/equipes/155.png" alt="drawing" width="160"/>|<img src="https://superliga.cbv.com.br/assets/images/equipes/138.png" alt="drawing" width="160"/>|Guest|Guest|
 
-## Instalation
+### Page Two: Team Stats 
+
+Here you can build a Stacked Areas Plot comparing the top 3 performers within the scope of a desired criteria,
+
+### Page Three: Team on the Map 
+
+Navigate through the map and see at which places my hometown Team "Itambé Minas" won and where it lost.
 
 
 Please proceed to install Streamlit
