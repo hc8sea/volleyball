@@ -20,8 +20,8 @@ Python 3.7.4150.1013
 packages:
 
 
-'pip install streamlit'
-'streamlit run app.py'
+`pip install streamlit`
+`streamlit run app.py`
 
 ## Table of Contents
 ---
