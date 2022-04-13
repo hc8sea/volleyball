@@ -17,7 +17,7 @@ This project intends to display the following Data Science skills :
 
 The Superliga VolleyBall Analysis is a three page dashboard exploring the available [stats](https://superliga.cbv.com.br/tabela-de-jogos-feminino) on the 'Superliga' Brazilian Volleyball Championship. Feel free to explore it: https://shrouded-beach-73431.herokuapp.com
 
-# Page One: Results Prediction
+### Page One: Results Prediction
 
 Outputs a winner given a Guest Team and a Home Team selected by the user. The Model was trained with data from 10/28/21 to 03/08/22, with 86% accuracy. On March 18, it predicted correctly 5 out of 6 matches happening that day.
 
