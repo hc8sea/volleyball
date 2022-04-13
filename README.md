@@ -42,6 +42,7 @@ Navigate through the map and see at which places my hometown Team "Itambé Minas
 
 <img src="part3.png" alt="drawing"/>
 
+## Instalation
 
 Please proceed to install Streamlit
 
@@ -50,8 +51,3 @@ Please proceed to install Streamlit
 And then, on your local folder, run the following
 
 `streamlit run app.py`
-
-## Table of Contents
-
-## Table of Contents
-
