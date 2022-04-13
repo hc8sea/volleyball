@@ -13,5 +13,17 @@ This project intends to display the following skills:
 
 Web: Visit https://shrouded-beach-73431.herokuapp.com
 
-## Table of Content
+## Instalation
+---
+Python 3.7.4150.1013
+
+packages:
+
+
+'pip install streamlit'
+'streamlit run app.py'
+
+## Table of Contents
+---
+## Table of Contents
 ---
