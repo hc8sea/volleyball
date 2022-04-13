@@ -21,6 +21,7 @@ packages:
 
 
 `pip install streamlit`
+
 `streamlit run app.py`
 
 ## Table of Contents
