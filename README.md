@@ -26,8 +26,8 @@ Outputs a winner given a Guest Team and a Home Team selected by the user. The Mo
 |---------------|-------------------|-----------------|--------------------|---------------|
 |18/03|<img src="https://superliga.cbv.com.br/assets/images/equipes/134.png" alt="drawing" width="160"/>|<img src="https://superliga.cbv.com.br/assets/images/equipes/131.png" alt="drawing" width="160"/>|Guest|Guest|
 |18/03|<img src="https://superliga.cbv.com.br/assets/images/equipes/141.png" alt="drawing" width="160"/>|<img src="https://superliga.cbv.com.br/assets/images/equipes/156.png" alt="drawing" width="160"/>|Home|Home|
-|18/03|<img src="https://superliga.cbv.com.br/assets/images/equipes/134.png" alt="drawing" width="160"/>|<img src="https://superliga.cbv.com.br/assets/images/equipes/142.png" alt="drawing" width="160"/>|Home|Guest|
-|18/03|<img src="https://superliga.cbv.com.br/assets/images/equipes/139.png" alt="drawing" width="160"/>|<img src="https://superliga.cbv.com.br/assets/images/equipes/133.png" alt="drawing" width="160"/>|Home|Home|
+|18/03|<img src="https://superliga.cbv.com.br/assets/images/equipes/142.png" alt="drawing" width="160"/>|<img src="https://superliga.cbv.com.br/assets/images/equipes/142.png" alt="drawing" width="160"/>|Home|Guest|
+|18/03|<img src="https://superliga.cbv.com.br/assets/images/equipes/154.png" alt="drawing" width="160"/>|<img src="https://superliga.cbv.com.br/assets/images/equipes/133.png" alt="drawing" width="160"/>|Home|Home|
 |18/03|<img src="https://superliga.cbv.com.br/assets/images/equipes/153.png" alt="drawing" width="160"/>|<img src="https://superliga.cbv.com.br/assets/images/equipes/132.png" alt="drawing" width="160"/>|Guest|Guest|
 |18/03|<img src="https://superliga.cbv.com.br/assets/images/equipes/155.png" alt="drawing" width="160"/>|<img src="https://superliga.cbv.com.br/assets/images/equipes/138.png" alt="drawing" width="160"/>|Guest|Guest|
 
