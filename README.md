@@ -2,7 +2,6 @@
 
 ![Python](https://img.shields.io/badge/python-v3.7+-blue.svg)
 
-If you're seeing this, you're probably a recruiter. Nice to meet you!
 This project intends to display the following Data Science skills :
 
 * Data Collection: Requests, Selenium, BeautifulSoup
